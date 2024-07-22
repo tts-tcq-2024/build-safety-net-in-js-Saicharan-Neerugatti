@@ -7,24 +7,21 @@ function getSoundexCode(char) {
         'M': '5', 'N': '5',
         'R': '6'
     };
-    return soundexDict[char] || '0';
+    return soundexDict[char.toUpperCase()] || '0';
 }
 
 function generateSoundex(name) {
-     if (!name) {
-         return '';
-     }
-    let upperName = name.toUpperCase();
-    let soundex = upperName[0]
-    let prevCode = getSoundexCode(upperName[0]);
-    for (let i = 1; i < upperName.length && soundex.length < 4; i++) {
-        let code = getSoundexCode(upperName[i]);
+    if (!name) return '';
+    let soundex = name[0].toUpperCase();
+    let prevCode = getSoundexCode(name[i]);
+    for (let i = 1; i < name.length; i++) {
+        let code = getSoundexCode(name[i]);
         if (code !== '0' && code !== prevCode) {
             soundex += code ;
         }
         prevCode = code;
     }
-    return soundex.padEnd(4, '0')
+    return (soundex + '000').slice(0,4);
 }
 
 module.exports = {
