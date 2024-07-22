@@ -14,10 +14,14 @@ function generateSoundex(name) {
     if (!name) return '';
     let soundex = name[0].toUpperCase();
     let prevCode = getSoundexCode(soundex);
-    for (let i = 1; i < name.length && soundex.length < 4; i++) {
+    let i = 1;
+    while (i < name.length && soundex.length < 4) {
         let code = getSoundexCode(name[i]);
-        (code !== '0' && code !== prevCode) ? soundex += code : null;
+        if (code !== '0' && code !== prevCode) {
+            soundex += code
+        }
         prevCode = code;
+        i++;
     }
     return soundex.padEnd(4,'0')
 }
