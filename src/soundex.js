@@ -12,19 +12,18 @@ function getSoundexCode(char) {
 }
 
 function generateSoundex(name) {
-    if (!name) return '';
-    let nameVal = name.toUpperCase();
-    let soundex = [nameVal[0]];
-    let prevCode = getSoundexCode(nameVal[0]);
+     if (!name) return '';
+    let soundex = [name[0].toUpperCase()];
+    let prevCode = getSoundexCode(name[0]);
 
-    name.forEach( val => {
-         if(soundex.length < 4) {
-             let code = getSoundexCode(val);
-             (code !== '0' && code !== prevCode) ? soundex += code : null;
-             prevCode = code;
-            }
-        })
-    return soundex.padEnd(4, '0');
+    for (let i = 1; i < name.length && soundex.length < 4; i++) {
+        let code = getSoundexCode(name[i]);
+        if (code !== '0' && code !== prevCode) {
+            soundex += code ;
+        }
+        prevCode = code;
+    }
+    return soundex.padEnd(4,'0');
 }
 
 module.exports = {
