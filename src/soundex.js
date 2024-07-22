@@ -1,5 +1,4 @@
 function getSoundexCode(char) {
-    char = char.toUpperCase();
     const soundexDict = {
         'B': '1', 'F': '1', 'P': '1', 'V': '1',
         'C': '2', 'G': '2', 'J': '2', 'K': '2', 'Q': '2', 'S': '2', 'X': '2', 'Z': '2',
@@ -12,18 +11,21 @@ function getSoundexCode(char) {
 }
 
 function generateSoundex(name) {
-     if (!name) return '';
-    let soundex = [name[0].toUpperCase()];
-    let prevCode = getSoundexCode(name[0]);
+     if (!name) {
+         return '';
+     }
+    let upperName = name.toUpperCase();
+    let soundex = upperName[0]
+    let prevCode = getSoundexCode(upperName[0]);
 
-    for (let i = 1; i < name.length && soundex.length < 4; i++) {
-        let code = getSoundexCode(name[i]);
+    for (let i = 1; i < upperName.length; i++) {
+        let code = getSoundexCode(upperName[i]);
         if (code !== '0' && code !== prevCode) {
             soundex += code ;
         }
         prevCode = code;
     }
-    return soundex.padEnd(4,'0');
+    return (soundex + '000').slice(0,4)
 }
 
 module.exports = {
