@@ -16,13 +16,12 @@ function generateSoundex(name) {
     let prevCode = getSoundexCode(name[1]);
     for (let i = 1; i < name.length && soundex.length < 4 ; i++) {
         let code = getSoundexCode(name[i]);
-       (code !== '0' && code !== prevCode) ? soundex += code : null;
+        if (code !== '0' && code !== prevCode) { 
+           soundex = soundex+code
+        }
         prevCode = code;
     }
-    while (soundex.length < 4) {
-        soundex += '0';
-    }
-    return soundex;
+    return soundex.padEnd(4, '0');
 }
 
 module.exports = {
