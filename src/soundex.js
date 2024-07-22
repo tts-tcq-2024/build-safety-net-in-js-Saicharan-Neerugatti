@@ -10,10 +10,10 @@ function generateSoundex(name) {
     };
     name = name.toUpperCase();
     let soundex = name[0]; 
-    let prevCode = soundexDict[name[0]] || '0';
+    let prevCode = soundexMap[name[0]] || '0';
 
     for (let i = 1; i < name.length && soundex.length < 4; i++) {
-        let code = soundexDict[name[0]];
+        let code = soundexMap[name[0]];
         if (code !== '0' && code !== prevCode) {
             soundex += code;
         }
