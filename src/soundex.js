@@ -17,24 +17,13 @@ function generateSoundex(name) {
     let soundex = [nameVal[0]];
     let prevCode = getSoundexCode(nameVal[0]);
 
-    // for (let i = 1; i < name.length && soundex.length < 4; i++) {
-    //     let code = getSoundexCode(name[i]);
-    //     if (code !== '0' && code !== prevCode) {
-    //         soundex.push(code);
-    //     }
-    //     prevCode = code;
-    // }
-
-    name.forEach((index,value) => {
-        if(index < name.length && soundex.length < 4) {
-        let code = getSoundexCode(nameVal[index]);
+    for (let i = 1; i < name.length && soundex.length < 4; i++) {
+        let code = getSoundexCode(name[i]);
         if (code !== '0' && code !== prevCode) {
-            soundex += code;
+            soundex.push(code);
         }
         prevCode = code;
-        }
-    })
-
+    }
     return soundex.padEnd(4, '0');
 }
 
