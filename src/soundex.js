@@ -13,7 +13,7 @@ function getSoundexCode(char) {
 function generateSoundex(name) {
     if (!name) return '';
     let soundex = name[0].toUpperCase();
-    let prevCode = getSoundexCode(name[i]);
+    let prevCode = getSoundexCode(name[1]);
     for (let i = 1; i < name.length; i++) {
         let code = getSoundexCode(name[i]);
         if (code !== '0' && code !== prevCode) {
