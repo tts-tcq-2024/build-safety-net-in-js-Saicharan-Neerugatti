@@ -17,15 +17,14 @@ function generateSoundex(name) {
     let upperName = name.toUpperCase();
     let soundex = upperName[0]
     let prevCode = getSoundexCode(upperName[0]);
-
-    for (let i = 1; i < upperName.length; i++) {
+    for (let i = 1; i < upperName.length && soundex.length < 4; i++) {
         let code = getSoundexCode(upperName[i]);
         if (code !== '0' && code !== prevCode) {
             soundex += code ;
         }
         prevCode = code;
     }
-    return (soundex + '000').slice(0,4)
+    return soundex.padEnd(4, '0')
 }
 
 module.exports = {
