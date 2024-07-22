@@ -10,5 +10,8 @@ describe('Soundex Algorithm', () => {
         expect(generateSoundex("A")).to.equal("A000");
     });
 
+    it('should be handle string which having same charcters', () => {
+        expect(generateSoundex("BJEQDAL")).to.equal("B234");
+    });
     
 });
