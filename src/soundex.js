@@ -18,13 +18,11 @@ function generateSoundex(name) {
     let prevCode = getSoundexCode(nameVal[0]);
 
     name.forEach( val => {
-     if(soundex.length < 4) {
-            let code = getSoundexCode(val)
-             if (code !== '0' && code !== prevCode) {
-                    soundex.push(code);
-                }
-                prevCode = code;
-        }
+         if(soundex.length < 4) {
+             let code = getSoundexCode(val)
+             (code !== '0' && code !== prevCode) ? soundex.push(code): null;
+             prevCode = code;
+            }
         })
     return soundex.padEnd(4, '0');
 }
